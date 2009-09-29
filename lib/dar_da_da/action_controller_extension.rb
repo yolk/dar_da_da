@@ -1,14 +1,13 @@
-module ActionController
-  class ForbiddenError < StandardError;end
-end
-
 module DarDaDa
   module ActionControllerExtension
     def self.included(base)
       base.extend(ClassMethods)
+      unless defined?(ActionController::ForbiddenError)
+        base.class_eval "class ::ActionController::ForbiddenError < ::ActionController::ActionControllerError;end"
+      end
     end
     
-    module ClassMethods
+    module ClassMethods      
       def dar_da_da(user_class, user_method_name = :current_user)
         user_class.dar_da_da.all_rights.each do |right|
           self.class_eval("
