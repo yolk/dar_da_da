@@ -1,0 +1,5 @@
+= DarDaDa
+
+== Copyright
+
+Copyright (c) 2009 Yolk GbR. See LICENSE for details.

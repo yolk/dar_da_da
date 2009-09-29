@@ -1,0 +1,31 @@
+module ActionController
+  class ForbiddenError < StandardError;end
+end
+
+module DarDaDa
+  module ActionControllerExtension
+    def self.included(base)
+      base.extend(ClassMethods)
+    end
+    
+    module ClassMethods
+      def dar_da_da(user_class, user_method_name = :current_user)
+        user_class.dar_da_da.all_rights.each do |right|
+          self.class_eval("
+            private
+            
+            def only_if_#{user_class.name.downcase}_is_allowed_to_#{right}
+              raise ActionController::ForbiddenError.new unless #{user_method_name}.allowed_to_#{right}?
+            end
+          ")
+          
+          self.class_eval("
+            def self.only_if_#{user_class.name.downcase}_is_allowed_to(right)
+              before_filter right
+            end
+          ")
+        end
+      end
+    end
+  end
+end
