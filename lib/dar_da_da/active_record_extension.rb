@@ -27,7 +27,7 @@ module DarDaDa
         
         dar_da_da_config.each do |name, role|
           self.class_eval("
-            def is_#{name}?
+            def #{name}?
               role == :#{name}
             end
           ")

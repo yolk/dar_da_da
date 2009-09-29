@@ -43,12 +43,12 @@ describe DarDaDa::ActiveRecordExtension, "extended Model" do
     @user.role.should eql(:user)
   end
   
-  it "should add is_{role}? methods" do
-    @user.should be_is_user
+  it "should add {role}? methods" do
+    @user.should be_user
     @user.role = :author
-    @user.should be_is_author
+    @user.should be_author
     @user.role = :admin
-    @user.should be_is_admin
+    @user.should be_admin
   end
   
   it "should add allowed_to? method" do
