@@ -57,7 +57,7 @@ module DarDaDa
       end
       
       def allowed_to?(name)
-        self.class.dar_da_da_config[role].include?(name.to_sym)
+        (self.class.dar_da_da_config[role] || []).include?(name.to_sym)
       end
       
       private
