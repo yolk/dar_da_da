@@ -53,9 +53,12 @@ describe DarDaDa::ActiveRecordExtension, "extended Model" do
   
   it "should add allowed_to? method" do
     @user.allowed_to?(:read_acticles).should be_true
+    @user.allowed_to?("read_acticles").should be_true
     @user.allowed_to?(:write_acticles).should be_false
     @user.allowed_to?(:cancel_account).should be_false
     @user.allowed_to?(:do_unknown_stuff).should be_false
+    @user.allowed_to?("").should be_false
+    @user.allowed_to?(nil).should be_false
   end
   
   it "should add allowed_to_{right}? methods" do
