@@ -74,4 +74,14 @@ describe DarDaDa::ActiveRecordExtension, "extended Model" do
     @user.should be_allowed_to_write_acticles
     @user.should be_allowed_to_cancel_account
   end
+  
+  it "should add named_scope for every role" do
+    User.destroy_all
+    User.create!(:role => :admin)
+    2.times { User.create!(:role => :author) }
+    3.times { User.create!(:role => :user) }
+    User.admins.map(&:role).should eql([:admin])
+    User.authors.map(&:role).should eql([:author, :author])
+    User.users.map(&:role).should eql([:user, :user, :user])
+  end
 end

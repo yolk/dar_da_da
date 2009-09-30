@@ -12,6 +12,9 @@ module DarDaDa
           def #{name}?
             role == :#{name}
           end
+          
+          named_scope :#{name.to_s.pluralize}, 
+                      :conditions => \"#{base.table_name}.#{config.options[:role_attribute]} = '#{name}'\"
         ")
       end
       config.all_rights.each do |right|
@@ -27,7 +30,7 @@ module DarDaDa
       def define_roles(options={}, &block)
         returning(self.dar_dar_da ||= DarDaDa::Config.new(options)) do |config|
           config.reopen(&block)
-          DarDaDa::ActiveRecordExtension.decorate(self, dar_dar_da)
+          DarDaDa::ActiveRecordExtension.decorate(self, config)
         end
       end
       
