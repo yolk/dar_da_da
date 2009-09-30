@@ -11,7 +11,7 @@ describe DarDaDa::ActionControllerExtension, "extended Base" do
   
   it "should define only_if_user_is_allowed_to class method" do
     ApplicationController.methods.map(&:to_s).should include("require_right")
-    ApplicationController.should_receive(:before_filter).with(:check_if_user_read_acticles, :only => [:index])
+    ApplicationController.should_receive(:before_filter).with(:check_if_user_is_allowed_to_read_acticles, :only => [:index])
     ApplicationController.require_right(:read_acticles, :only => [:index])
   end
 end

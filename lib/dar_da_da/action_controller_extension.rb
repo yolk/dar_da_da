@@ -20,7 +20,7 @@ module DarDaDa
           
           self.class_eval("
             def self.require_right(right, options={})
-              before_filter :\"check_if_#{user_class.name.downcase}_#\{right}\", options
+              before_filter :\"check_if_#{user_class.name.downcase}_is_allowed_to_#\{right}\", options
             end
           ")
         end
