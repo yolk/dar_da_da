@@ -20,7 +20,7 @@ describe DarDaDa::ActiveRecordExtension, "extended Model" do
   end
   
   it "should set default_role to user" do
-    User.dar_da_da_config.options[:default_role].should == (:"user")
+    User.dar_dar_da.options[:default_role].should == (:"user")
   end
   
   it "should prevent saving role_attribute with nil or empty" do

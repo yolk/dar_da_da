@@ -27,7 +27,7 @@ end
 
 # Purely useful for test cases...
 class User < ActiveRecord::Base
-  dar_da_da do
+  define_roles do
     role :admin do
       based_on :author
       is_allowed_to :cancel_account
@@ -46,7 +46,7 @@ end
 
 class ApplicationController < ActionController::Base
   
-  dar_da_da User
+  define_access_control User
   
   private
   
