@@ -25,10 +25,10 @@ module DarDaDa
     
     module ClassMethods
       def define_roles(options={}, &block)
-        self.dar_dar_da ||= DarDaDa::Config.new(options)
-        dar_dar_da.reopen(&block)
-        DarDaDa::ActiveRecordExtension.decorate(self, dar_dar_da)
-        dar_dar_da
+        returning(self.dar_dar_da ||= DarDaDa::Config.new(options)) do |config|
+          config.reopen(&block)
+          DarDaDa::ActiveRecordExtension.decorate(self, dar_dar_da)
+        end
       end
       
       def dar_dar_da=(config)
