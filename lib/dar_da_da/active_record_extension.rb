@@ -28,7 +28,7 @@ module DarDaDa
     
     module ClassMethods
       def define_roles(options={}, &block)
-        returning(self.dar_dar_da ||= DarDaDa::Config.new(options)) do |config|
+        (self.dar_dar_da ||= DarDaDa::Config.new(options)).tap do |config|
           config.reopen(&block)
           DarDaDa::ActiveRecordExtension.decorate(self, config)
         end
