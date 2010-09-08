@@ -13,8 +13,7 @@ module DarDaDa
             role == :#{name}
           end
           
-          named_scope :#{name.to_s.pluralize}, 
-                      :conditions => \"#{base.table_name}.#{config.options[:role_attribute]} = '#{name}'\"
+          scope :#{name.to_s.pluralize}, where(\"#{base.table_name}.#{config.options[:role_attribute]} = '#{name}'\")
         ")
       end
       config.all_rights.each do |right|
