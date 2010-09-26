@@ -4,19 +4,19 @@ describe DarDaDa::ActiveRecordExtension, "extended Model" do
   before { @user = User.create! }
   
   it "should set role to default_role" do
-    @user.role.should eql(:user)
-    User.new.role.should eql(:user)
+    @user.role.should eql("user")
+    User.new.role.should eql("user")
   end
   
   it "should add role accessor to map role_attribute" do
     @user.role = :author
-    @user.role.should eql(:author)
+    @user.role.should eql("author")
     @user.role = :unknown_role
-    @user.role.should eql(:author)
+    @user.role.should eql("author")
     @user.save!
-    @user.role.should eql(:author)
+    @user.role.should eql("author")
     @user.update_attributes!(:role => 'user')
-    @user.role.should eql(:user)
+    @user.role.should eql("user")
   end
   
   it "should set default_role to user" do
@@ -30,7 +30,7 @@ describe DarDaDa::ActiveRecordExtension, "extended Model" do
     @user.reload
     @user.send(:read_role_attribute).should eql("user")
     @user.role_name.should eql("user")
-    @user.role.should eql(:user)
+    @user.role.should eql("user")
   end
   
   it "should prevent saving role_attribute with not exisiting role" do
@@ -40,7 +40,7 @@ describe DarDaDa::ActiveRecordExtension, "extended Model" do
     @user.reload
     @user.send(:read_role_attribute).should eql("user")
     @user.role_name.should eql("user")
-    @user.role.should eql(:user)
+    @user.role.should eql("user")
   end
   
   it "should add {role}? methods" do
@@ -77,11 +77,11 @@ describe DarDaDa::ActiveRecordExtension, "extended Model" do
   
   it "should add named_scope for every role" do
     User.destroy_all
-    User.create!(:role => :admin)
+    User.create!(:role => "admin")
     2.times { User.create!(:role => :author) }
     3.times { User.create!(:role => :user) }
-    User.admins.map(&:role).should eql([:admin])
-    User.authors.map(&:role).should eql([:author, :author])
-    User.users.map(&:role).should eql([:user, :user, :user])
+    User.admins.map(&:role).should eql(["admin"])
+    User.authors.map(&:role).should eql(["author", "author"])
+    User.users.map(&:role).should eql(["user", "user", "user"])
   end
 end

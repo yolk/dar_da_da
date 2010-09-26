@@ -10,7 +10,7 @@ module DarDaDa
       config.each do |name, role|
         base.class_eval("
           def #{name}?
-            role == :#{name}
+            role_symbol == :#{name}
           end
           
           scope :#{name.to_s.pluralize}, where(\"#{base.table_name}.#{config.options[:role_attribute]} = '#{name}'\")
@@ -48,8 +48,7 @@ module DarDaDa
       end
       
       def role
-        return self.class.dar_dar_da.options[:default_role] if read_role_attribute.blank?
-        read_role_attribute.to_sym
+        role_symbol.to_s
       end
       
       def role=(new_role)
@@ -62,6 +61,12 @@ module DarDaDa
       end
       
       private
+      
+      def role_symbol
+        role_attribute = read_role_attribute
+        return self.class.dar_dar_da.options[:default_role] if role_attribute.blank?
+        role_attribute.to_sym
+      end
       
       def read_role_attribute
         read_attribute(self.class.dar_dar_da.options[:role_attribute])
