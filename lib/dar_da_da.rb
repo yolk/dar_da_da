@@ -1,5 +1,6 @@
 require 'dar_da_da/config'
 require 'dar_da_da/role'
+require 'dar_da_da/version'
 
 module DarDaDa
   @@config = {:role_attribute => :role_name }
