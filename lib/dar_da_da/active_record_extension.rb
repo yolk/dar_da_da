@@ -1,3 +1,5 @@
+require 'active_support/core_ext/class/inheritable_attributes'
+
 module DarDaDa
   module ActiveRecordExtension
     def self.included(base)

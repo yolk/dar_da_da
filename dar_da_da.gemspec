@@ -19,10 +19,10 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
   
-  s.add_dependency 'activesupport',           '>= 3.0'
-  s.add_dependency 'activerecord',            '>= 3.0'
+  s.add_dependency 'activesupport',           '~> 3.0'
+  s.add_dependency 'activerecord',            '~> 3.0'
   # Actionpack is optional!
-  s.add_development_dependency 'actionpack',  '>= 3.0'
+  s.add_development_dependency 'actionpack',  '~> 3.0'
   s.add_development_dependency 'rspec',       '>= 2.4.0'
   s.add_development_dependency 'guard-rspec', '>=0.1.9'
   s.add_development_dependency 'growl',       '>=1.0.3'
