@@ -1,8 +1,9 @@
-require 'active_support/core_ext/class/inheritable_attributes'
+require 'active_support/core_ext/class/attribute'
 
 module DarDaDa
   module ActiveRecordExtension
     def self.included(base)
+      base.class_attribute(:dar_dar_da, :instance_reader => false, :instance_writer => false)
       base.extend(ClassMethods)
     end
     
@@ -33,14 +34,6 @@ module DarDaDa
           config.reopen(&block)
           DarDaDa::ActiveRecordExtension.decorate(self, config)
         end
-      end
-      
-      def dar_dar_da=(config)
-        write_inheritable_attribute(:dar_dar_da, config)
-      end
-      
-      def dar_dar_da
-        read_inheritable_attribute(:dar_dar_da)
       end
     end
     
