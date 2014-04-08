@@ -3,7 +3,8 @@
 coverage
 rdoc
 pkg
-.rvmrc
+.rbenv-*
+.ruby-version
 *.gem
 .bundle
 Gemfile.lock

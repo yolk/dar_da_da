@@ -16,7 +16,7 @@ module DarDaDa
             role_symbol == :#{name}
           end
 
-          def #{name.to_s.pluralize}
+          def self.#{name.to_s.pluralize}
             where(\"#{base.table_name}.#{config.options[:role_attribute]} = '#{name}'\")
           end
         ")
