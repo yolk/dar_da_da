@@ -25,5 +25,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'actionpack',  '>= 3.0'
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'guard-rspec'
-  s.add_development_dependency 'sqlite3-ruby'
+  s.add_development_dependency 'sqlite3'
 end
