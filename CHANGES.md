@@ -1,5 +1,8 @@
 ### dev
 
+* Use before_action instead of before_filter
+* Require Rails >= 4.0
+
 [full changelog](http://github.com/yolk/valvat/compare/v0.0.5...master)
 
 ### 0.0.5 / 2014-04-09

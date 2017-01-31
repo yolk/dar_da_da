@@ -11,7 +11,7 @@ describe DarDaDa::ActionControllerExtension, "extended Base" do
 
   it "should define only_if_user_is_allowed_to class method" do
     expect(ApplicationController.methods.map(&:to_s)).to include("require_right")
-    expect(ApplicationController).to receive(:before_filter).with(:check_if_user_is_allowed_to_read_acticles, :only => [:index])
+    expect(ApplicationController).to receive(:before_action).with(:check_if_user_is_allowed_to_read_acticles, :only => [:index])
     ApplicationController.require_right(:read_acticles, :only => [:index])
   end
 end
