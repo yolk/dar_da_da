@@ -7,12 +7,14 @@ module DarDaDa
   mattr_accessor :config
 end
 
-if defined? ActiveRecord::Base
-  require 'dar_da_da/active_record_extension'
-  ActiveRecord::Base.send(:include, DarDaDa::ActiveRecordExtension)
+require 'dar_da_da/active_record_extension'
+
+ActiveSupport.on_load(:active_record) do
+  include DarDaDa::ActiveRecordExtension
 end
 
-if defined? ActionController::Base
-  require 'dar_da_da/action_controller_extension'
-  ActionController::Base.send(:include, DarDaDa::ActionControllerExtension)
+require 'dar_da_da/action_controller_extension'
+
+ActiveSupport.on_load(:action_controller) do
+  include DarDaDa::ActionControllerExtension
 end

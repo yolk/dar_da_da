@@ -15,7 +15,7 @@ describe DarDaDa::ActiveRecordExtension, "extended Model" do
     expect(@user.role).to eql("author")
     @user.save!
     expect(@user.role).to eql("author")
-    @user.update_attributes!(:role => 'user')
+    @user.update!(:role => 'user')
     expect(@user.role).to eql("user")
   end
 
